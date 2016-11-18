@@ -9,12 +9,6 @@ It will not be able to log directives that are inside "<IfModule php5_module>" t
 
 mod_php configuration directives that are registered by this mod :
  * php_value
-        AP_INIT_TAKE2("php_flag", log_action, NULL, OR_OPTIONS, "PHP Flag Modifier"),
-        AP_INIT_TAKE2("php_admin_value", log_action, NULL, ACCESS_CONF|RSRC_CONF, "PHP Value Modifier (Admin)"),
-        AP_INIT_TAKE2("php_admin_flag", log_action, NULL, ACCESS_CONF|RSRC_CONF, "PHP Flag Modifier (Admin)"),
-        AP_INIT_TAKE12("PHPINIDir", log_action, NULL, RSRC_CONF, "Directory containing the php.ini file"),
-	// Specific to mockphp
-	AP_INIT_FLAG("log_mockphp", set_logging, NULL, RSRC_CONF, "Enable logging of PHP parameters used")
  * php_flag
  * php_admin_value
  * php_admin_flag
