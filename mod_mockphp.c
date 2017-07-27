@@ -51,12 +51,12 @@ const char *log_action(cmd_parms *cmd, void *my_config, const char *arg1, const 
 		return NULL;
 	}
 
-	if(arg2 != "") {
-		// Logging a directive that have two arguments (ex: php_value max_execution_time 30)
-		ap_log_error(APLOG_MARK, APLOG_WARNING, 0, cmd->server, "Called a php_mod function on %s (%i) '%s %s %s'", cmd->directive->filename, cmd->directive->line_num, cmd->cmd->name, arg1, arg2);
-	} else {
+	if(!arg2 || strcmp(arg2, "") == 0) {
 		// Logging a directive that has only one argument (ex: PHPINIDir /etc/php.ini)
 		ap_log_error(APLOG_MARK, APLOG_WARNING, 0, cmd->server, "Called a php_mod function on %s (%i) '%s %s'", cmd->directive->filename, cmd->directive->line_num, cmd->cmd->name, arg1);
+	} else {
+		// Logging a directive that have two arguments (ex: php_value max_execution_time 30)
+		ap_log_error(APLOG_MARK, APLOG_WARNING, 0, cmd->server, "Called a php_mod function on %s (%i) '%s %s %s'", cmd->directive->filename, cmd->directive->line_num, cmd->cmd->name, arg1, arg2);
 	}
 	return NULL;
 }
